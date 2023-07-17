@@ -3,8 +3,8 @@ services:
   mod-host:
     image: mod-host:latest
     container_name: mod-host
-    stdin_open: true # docker run -i
-    tty: true # docker run
+    stdin_open: true
+    tty: true
     environment:
       - USER_NAME=${USER_NAME}
       - GROUP_NAME=${GROUP_NAME}
@@ -23,6 +23,7 @@ services:
     ports:
       - 5555:5555
       - 5556:5556
+    restart: unless-stopped
 
   mod-ui:
     image: mod-ui:latest
@@ -34,9 +35,9 @@ services:
       - GROUP_ID=${GROUP_ID}
     volumes:
       - /dev/shm:/dev/shm:rw
-      - /home/${USER_NAME}/mod-user-files:/home/raid/user-files
-      - /home/${USER_NAME}/mod-data:/home/raid/data
-      - /home/${USER_NAME}/mod-pedalboards:/home/raid/.pedalboards
+      - ${BASE_DIRECTORY}/${USER_NAME}/mod-user-files:/home/raid/user-files
+      - ${BASE_DIRECTORY}/${USER_NAME}/mod-data:/home/raid/data
+      - ${BASE_DIRECTORY}/${USER_NAME}/mod-pedalboards:/home/raid/.pedalboards
     build:
       context: ./mod-ui
     ulimits:
@@ -45,3 +46,6 @@ services:
     ports:
       - 8081:8081
       - 8888:8888
+    depends_on:
+      - mod-host
+    restart: unless-stopped
