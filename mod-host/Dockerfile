@@ -4,7 +4,7 @@ ENV REBUILD=true
 ENV DEBIAN_FRONTEND=noninteractive
 
 # Install dependencies
-RUN apt-get update && apt-get install -q -y --no-install-recommends wget \
+RUN apt-get update && apt-get install -q -y --no-install-recommends ca-certificates wget \
     && rm -rf /var/lib/apt/lists/* 
 
 # Add KX Studio Repo, install plugins
