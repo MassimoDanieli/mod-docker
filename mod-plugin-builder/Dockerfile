@@ -33,8 +33,9 @@ RUN mkdir -p -m 777 /mod/mod-plugin-builder/mod-workdir/x86_64
 USER $USERNAME
 RUN ./bootstrap.sh x86_64 \
     && for i in `ls plugins/package |egrep -v 'max-gen|fluidplug|zynaddsubfx|pdlv2-labs|zeroconvo'` ; do ./build x86_64 $i ; done \
-    && cp -rfp mod-workdir/x86_64/plugins/* /usr/lib/lv2/ \
-    && bash -c  './copy_modguis.sh' \
+    && cp -rfp mod-workdir/x86_64/plugins/* /usr/lib/lv2
+USER root
+RUN bash -c  './copy_modguis.sh' \
     && echo
 
 
