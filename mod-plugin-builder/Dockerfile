@@ -26,6 +26,7 @@ ARG USERNAME $USER_NAME
 ARG USERID $USER_ID
 ARG GROUPID $GROUP_ID
 RUN groupadd -f $GROUPID && useradd -m -g $GROUPID -G audio -u $USERID $USERNAME 
+RUN mkdir -p /mod && chown -R $USERID:GROUPID /mod
 USER $USERNAME
 
 # Build mod-host
