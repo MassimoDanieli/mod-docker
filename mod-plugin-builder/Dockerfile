@@ -29,7 +29,7 @@ RUN groupadd -f $GROUPID && useradd -m -g $GROUPID -G audio -u $USERID $USERNAME
 
 
 # Build mod-host
-RUN mkdir -p /mod/mod-plugin-builder/mod-workdir/x86_64
+RUN mkdir -p -m 777 /mod/mod-plugin-builder/mod-workdir/x86_64
 USER $USERNAME
 RUN ./bootstrap.sh x86_64 \
     && for i in `ls plugins/package |egrep -v 'max-gen|fluidplug|zynaddsubfx|pdlv2-labs|zeroconvo'` ; do ./build x86_64 $i ; done \
