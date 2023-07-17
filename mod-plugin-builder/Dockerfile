@@ -26,7 +26,7 @@ ARG GROUPID $GROUP_ID
 
 # Use Docker's USER command
 RUN groupadd -f $GROUPID && useradd -m -g $GROUPID -G audio -u $USERID $USERNAME || true
-USER $USERNAME
+
 
 # Build mod-host
 RUN mkdir mod-workdir \
@@ -36,7 +36,7 @@ RUN mkdir mod-workdir \
     && bash -c  './copy_modguis.sh' \
     && echo
 
-USER root
+
 
 # Build final image
 FROM mod-host
