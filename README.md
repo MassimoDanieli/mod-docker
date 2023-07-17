@@ -36,14 +36,14 @@ $HOME/mod-pedalboards
 # USAGE to BUILD everything
 
 - Clone the repo `git clone git@github.com:raidolo/mod-docker.git`
-- `chmod +x run.sh`
-- `./run.sh`
+- `chmod +x run_build.sh`
+- `./run_build.sh`
 - go to `http://localhost:8888` and start playing!
 
 # USAGE to DOWNLOAD the prebuilt Docker Image
 
 - chmod +x run_docker.sh
-- ./run.sh 
+- ./run_docker.sh 
 - go to `http://localhost:8888` and start playing!
 
 # TODO / GOTCHAS
