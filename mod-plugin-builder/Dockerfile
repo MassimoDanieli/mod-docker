@@ -1,5 +1,5 @@
 # Use multi-stage builds
-FROM debian:buster as builder
+FROM mod-host as builder
 
 ENV REBUILD=true
 ENV DEBIAN_FRONTEND=noninteractive
