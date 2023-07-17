@@ -29,8 +29,9 @@ RUN groupadd -f $GROUPID && useradd -m -g $GROUPID -G audio -u $USERID $USERNAME
 
 
 # Build mod-host
-RUN mkdir mod-workdir \
-    && ./bootstrap.sh x86_64 \
+RUN mkdir mod-workdir
+USER $USERNAME
+RUN ./bootstrap.sh x86_64 \
     && for i in `ls plugins/package |egrep -v 'max-gen|fluidplug|zynaddsubfx|pdlv2-labs|zeroconvo'` ; do ./build x86_64 $i ; done \
     && cp -rfp mod-workdir/x86_64/plugins/* /usr/lib/lv2/ \
     && bash -c  './copy_modguis.sh' \
