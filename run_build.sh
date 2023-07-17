@@ -16,8 +16,8 @@ mkdir -p $BASE_DIRECTORY/$USER_NAME/mod-user-files
 mkdir -p $BASE_DIRECTORY/$USER_NAME/mod-data
 mkdir -p $BASE_DIRECTORY/$USER_NAME/mod-pedalboards
 
-docker build --rm -f "mod-host/Dockerfile" -t mod-host "mod-host"
-docker build --rm -f "mod-plugin-builder/Dockerfile" --build-arg USERNAME=$USER_NAME --build-arg USERID=$USER_ID --build-arg GROUPID=$GROUP_ID -t mod-plugin-builder "mod-plugin-builder"
-docker build --rm -f "mod-ui/Dockerfile" --build-arg USERNAME=$USER_NAME -t mod-ui "mod-ui"
+docker build --progress=plain --progress=plain  --rm -f "mod-host/Dockerfile" -t mod-host "mod-host"
+docker build --progress=plain --rm -f "mod-plugin-builder/Dockerfile" --build-arg USERNAME=$USER_NAME --build-arg USERID=$USER_ID --build-arg GROUPID=$GROUP_ID -t mod-plugin-builder "mod-plugin-builder"
+docker build --progress=plain  --rm -f "mod-ui/Dockerfile" --build-arg USERNAME=$USER_NAME -t mod-ui "mod-ui"
 
 docker-compose up --no-build mod-ui
