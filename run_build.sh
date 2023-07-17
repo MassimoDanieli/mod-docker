@@ -6,10 +6,10 @@ export GROUP_NAME=$(id -gn)
 
 if [ "$(uname)" == "Darwin" ]; then
     # Mac OS X platform
-    BASE_DIRECTORY="/Users"
+    export BASE_DIRECTORY="/Users"
 elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
     # GNU/Linux platform
-    BASE_DIRECTORY="/home"
+    export BASE_DIRECTORY="/home"
 fi
 
 mkdir -p $BASE_DIRECTORY/$USER_NAME/mod-user-files
@@ -21,4 +21,3 @@ docker build --rm -f "mod-plugin-builder/Dockerfile" --build-arg USERNAME=$USER_
 docker build --rm -f "mod-ui/Dockerfile" --build-arg USERNAME=$USER_NAME -t mod-ui "mod-ui"
 
 docker-compose up --no-build mod-ui
-
