@@ -18,7 +18,7 @@ RUN dpkg --purge kxstudio-repos-gcc5 \
 
 # Build mod-host
 RUN git clone https://github.com/moddevices/mod-host.git /mod/mod-host/source \
-    && apt install build-essential -y --no-install-recommends \
+    && apt-get update && apt install build-essential -y --no-install-recommends \
     && mkdir /usr/include/lilv \
     && cp /usr/include/lilv-0/lilv/lilv.h /usr/include/lilv/ \
     && make -C /mod/mod-host/source && make install -C  /mod/mod-host/source
