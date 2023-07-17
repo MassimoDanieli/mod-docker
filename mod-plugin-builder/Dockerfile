@@ -18,12 +18,15 @@ WORKDIR /mod/mod-plugin-builder
 RUN git submodule init && git submodule update
 
 # Copy the script with execution permissions
-COPY --chmod=755 ./copy_modguis.sh ./
+COPY --chmod=755 ./copy_modguis.sh /mod/mod-plugin-builder/ 
 
 # Create a user with a home directory and add it to 'audio' group
-RUN groupadd -r moddev && useradd -r -g moddev -G audio -m -d /home/moddev moddev && chmod 755 /home/moddev
 
-USER moddev
+ARG USERNAME $USER_NAME
+ARG USERID $USER_ID
+ARG GROUPID $GROUP_ID
+RUN groupadd -f $GROUPID && useradd -m -g $GROUPID -G audio -u $USERID $USERNAME 
+USER $USERNAME
 
 # Build mod-host
 RUN mkdir -m 777 ${WORKDIR} && \
