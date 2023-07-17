@@ -1,59 +1,51 @@
-# MOD Software 2023 version
+# MOD Software 2023 Version
 
-I've forked this code from the very good work made by Alexis Boni in his [mod-docker](https://github.com/ajboni/mod-docker) implementation
-His code was running an old version of the mod-ui interface. 
-I made all the changes to build the current MOD software, taken from the [MOD GitHub](https://github.com/moddevices)
-I did this basically because Mike Oliphant has released a [Neural Amp Modeler LV2 plugin](https://github.com/mikeoliphant/neural-amp-modeler-lv2) and I wanted to have a nice a powerful LV2 host to play with Linux. 
-MOD Devices also made a mod-live-usb ISO to boot an x86 PC with their software, but it's difficult to use and booting from USB would not be ideal.
+This code is a fork of the excellent work done by Alexis Boni in his [mod-docker](https://github.com/ajboni/mod-docker) implementation. His code utilized an older version of the mod-ui interface. I've updated it to incorporate the latest MOD software, sourced from the [MOD GitHub](https://github.com/moddevices).
 
-Additionally, I also built all the current MOD Plugins available in the [mod-plugin-builder repo](https://github.com/moddevices/mod-plugin-builder) so not only you have the free LV2 plugins that Alexis included in his version of mod-docker, but at the end the host will offer nearly 1000 LV2 plugins :)  
+My motivation for these changes stemmed from the release of Mike Oliphant's [Neural Amp Modeler LV2 plugin](https://github.com/mikeoliphant/neural-amp-modeler-lv2). I wanted a robust and feature-rich LV2 host for Linux. While MOD Devices does offer a mod-live-usb ISO for booting an x86 PC with their software, it's not the most user-friendly and booting from USB isn't ideal.
 
-Another nice additional touch, I've also added the [browsepy File manager](https://github.com/moddevices/browsepy) so you can upload files directly from the MOD UI we interface. 
+I've also incorporated all the current MOD Plugins available in the [mod-plugin-builder repo](https://github.com/moddevices/mod-plugin-builder). As a result, you not only get the free LV2 plugins included in Alexis's version of mod-docker, but the host will also offer nearly 1000 LV2 plugins.
 
-This repo contains all the code to build the docker containers yourself, but because it can take a lot of time I also made a docker prebuilt image available here: ADD LINK TO THE IMAGE
+As a bonus, I've integrated the [browsepy File manager](https://github.com/moddevices/browsepy), enabling you to upload files directly from the MOD UI web interface. 
+
+This repository provides all the code needed to build the Docker containers yourself. However, given the time this process can take, I've also made a prebuilt Docker image available here: ADD LINK TO THE IMAGE.
 
 # mod-docker
 
-MOD-DOCKER is an open-source [MOD Software](https://www.moddevices.com/) emulator for Linux based on Docker that lets you play around with hundreds of LV2 audio plugins!
-This project aims to provide a docker container in order to use mod-host and mod-ui painlessly from your linux machine.
+MOD-DOCKER is an open-source [MOD Software](https://www.moddevices.com/) emulator for Linux, built on Docker. It allows you to experiment with hundreds of LV2 audio plugins with ease. The goal of this project is to deliver a Docker container facilitating the usage of mod-host and mod-ui on your Linux machine.
 
-MOD team has done a remarkable job for the whole Linux audio open-source community, so if you like this emulator you should go get the real thing!
+The MOD team has made significant contributions to the Linux audio open-source community. If you enjoy this emulator, I encourage you to support the real thing!
 
-This project is heavily inspired in [MODEP](https://github.com/BlokasLabs/modep)
+This project draws heavy inspiration from [MODEP](https://github.com/BlokasLabs/modep).
 
-# REQUIREMENTS
+# Requirements
 
-You need to be have docker installed, docker-compose running JACK and be part of audio group.
+You need Docker and Docker-compose installed and running JACK, and you also need to be part of the audio group.
 
-The run scripts available in thie repo make three directories in yout $HOME folder, then the docker compose bind these local dire in the container, this is needed for the browsepy file manager and to store your files permanently in your home folder.
+The run scripts available in this repo create three directories in your $HOME folder. Docker Compose then binds these local directories in the container. This setup is required for the browsepy file manager and to store your files permanently in your home folder.
 
-The directory that will be made are:
-$HOME/mod-user-files
-$HOME/mod-data
-$HOME/mod-pedalboards
+The directories created are:
+- $HOME/mod-user-files
+- $HOME/mod-data
+- $HOME/mod-pedalboards
 
+# Usage for Building
 
-# USAGE to BUILD everything
+- Clone the repo: `git clone git@github.com:raidolo/mod-docker.git`
+- Give execution permissions: `chmod +x run_build.sh`
+- Run the build script: `./run_build.sh`
+- Go to `http://localhost:8888` and start playing!
 
-- Clone the repo `git clone git@github.com:raidolo/mod-docker.git`
-- `chmod +x run_build.sh`
-- `./run_build.sh`
-- go to `http://localhost:8888` and start playing!
+# Usage for Downloading the Prebuilt Docker Image
 
-# USAGE to DOWNLOAD the prebuilt Docker Image
+- Give execution permissions: `chmod +x run_docker.sh`
+- Run the Docker script: `./run_docker.sh`
+- Go to `http://localhost:8888` and start playing!
 
-- chmod +x run_docker.sh
-- ./run_docker.sh 
-- go to `http://localhost:8888` and start playing!
+# TODO / Gotchas
 
-# TODO / GOTCHAS
+Currently, the builder uses the kxrepos plugins and the mod-plugin-builder plugins. 
 
-Currently the builder uses the kxrepos plugins and the mod-plugin-builder plugins
+Please note, some plugins don't provide modguis, resulting in a less visually appealing interface. Also, some plugins might not work as expected.
 
-Also some plugins does not provide modguis so thy will be 'ugly'. Also some might not even work.
-
-At the moment the container is just one, because it contains everything needed to run, I didn't have time to understant why in the original version of Alexis Bonis he was not able to run mod-host in a separate container, if it will be needed I'll investigate it.
-
-
-![image](https://github.com/raidolo/mod-docker/assets/25846804/3abe0c9c-38ab-4edd-8463-d61a40f29fbd)
-
+For now, the system consists of one container that contains everything necessary to run the software. I haven't had the opportunity to understand why Alexis Boni's original version couldn't run mod-host in a separate container. If there's a need, I'll investigate this issue.
