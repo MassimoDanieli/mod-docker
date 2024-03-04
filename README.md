@@ -43,9 +43,5 @@ The directories created are:
 - Go to `http://localhost:8888` and start playing!
 
 # TODO / Gotchas
-
-Currently, the builder uses the kxrepos plugins and the mod-plugin-builder plugins. 
-
-Please note, some plugins don't provide modguis, resulting in a less visually appealing interface. Also, some plugins might not work as expected.
-
-For now, the system consists of one container that contains everything necessary to run the software. I haven't had the opportunity to understand why Alexis Boni's original version couldn't run mod-host in a separate container. If there's a need, I'll investigate this issue.
+Nothing 
+MOD released his app
