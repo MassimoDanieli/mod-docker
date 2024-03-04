@@ -1,4 +1,4 @@
-# MOD Software 2023 Version
+# MOD Software 2024 Version
 
 This code is a fork of the excellent work done by Alexis Boni in his [mod-docker](https://github.com/ajboni/mod-docker) implementation. His code utilized an older version of the mod-ui interface. I've updated it to incorporate the latest MOD software, sourced from the [MOD GitHub](https://github.com/moddevices).
 
